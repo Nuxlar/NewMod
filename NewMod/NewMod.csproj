@@ -33,7 +33,7 @@
       <NoWarn>NU1701</NoWarn>
     </PackageReference>
   </ItemGroup>
-  
+
  <Target Name="BuildTSPackage" AfterTargets="Build">
     <MakeDir Directories="$(TSPackageDir);$(TSPackagePluginDir)" />
     <Copy SourceFiles="$(SolutionDir)manifest.json;$(SolutionDir)README.md;$(SolutionDir)CHANGELOG.md" DestinationFolder="$(TSPackageDir)" />
