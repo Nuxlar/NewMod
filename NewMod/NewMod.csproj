@@ -1,17 +1,19 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.1</TargetFramework>
-    <Nullable>enable</Nullable>
-    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-    <RunPostBuildEvent>Always</RunPostBuildEvent>
-	<RestoreAdditionalProjectSources>
-		https://api.nuget.org/v3/index.json;
-		https://nuget.bepinex.dev/v3/index.json;
-		https://nuget.samboy.dev/v3/index.json
-	</RestoreAdditionalProjectSources>
+	<TargetFramework>netstandard2.1</TargetFramework>
+	<LangVersion>preview</LangVersion>
+	<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+	<AssemblyVersion>2.0.0</AssemblyVersion>
+	<FileVersion>2.0.0</FileVersion>
   </PropertyGroup>
-
+	
+    <ItemGroup>
+	    <Compile Remove="NetworkWeaver\**" />
+	    <EmbeddedResource Remove="NetworkWeaver\**" />
+	    <None Remove="NetworkWeaver\**" />
+    </ItemGroup>
+	
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <DebugType>portable</DebugType>
   </PropertyGroup>
@@ -32,9 +34,9 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="BepInEx.Core" Version="5.4.21" />
-	<PackageReference Include="RiskOfRain2.GameLibs" Version="1.3.8-r.0" />
 	<PackageReference Include="MMHOOK.RoR2" Version="2025.5.5" NoWarn="NU1701" />
 	<PackageReference Include="UnityEngine.Modules" Version="2021.3.33" GeneratePathProperty="true" />
+	<PackageReference Include="RiskOfRain2.GameLibs" Version="1.3.8-r.0" GeneratePathProperty="true" />
   </ItemGroup>
 
  <Target Name="BuildTSPackage" AfterTargets="Build">
@@ -52,8 +54,7 @@
     <Delete Files="$(TSPackagePluginDir)/$(AssemblyName).dll" />
     <Delete Files="$(TSPackagePluginDir)/$(AssemblyName).pdb" Condition="'$(Configuration)'=='Release'" ContinueOnError="true" />
 
-    <Exec Command="Unity.UNetWeaver.exe $(PkgUnityEngine_Modules)\lib\netstandard2.0\UnityEngine.CoreModule.dll $(PkgRiskOfRain2_GameLibs)\lib\netstandard2.0\com.unity.multiplayer-hlapi.Runtime.dll $(TSPackagePluginDir) $(SolutionDir)$(ProjectName)\$(OutDir)$(AssemblyName).dll $(NugetPackageRoot)\netstandard.library.ref\2.1.0\ref\netstandard2.1" WorkingDirectory="$(ProjectDir)\NetworkWeaver" />
-
+     <Exec Command="Unity.UNetWeaver.exe $(PkgUnityEngine_Modules)\lib\netstandard2.0\UnityEngine.CoreModule.dll $(PkgRiskOfRain2_GameLibs)\lib\netstandard2.0\com.unity.multiplayer-hlapi.Runtime.dll $(TSPackagePluginDir) $(SolutionDir)$(ProjectName)\$(OutDir)$(AssemblyName).dll $(NugetPackageRoot)\netstandard.library.ref\2.1.0\ref\netstandard2.1" WorkingDirectory="$(ProjectDir)\NetworkWeaver" />
     <PropertyGroup>
       <NetWeaverHasOutput>false</NetWeaverHasOutput>
       <NetWeaverHasOutput Condition="Exists('$(TSPackagePluginDir)/$(AssemblyName).dll')">true</NetWeaverHasOutput>
