@@ -1,6 +1,6 @@
 # New Mod
 
-A template for a Risk of Rain 2 mod. Updated for game version v1.3.6#371
+A template for a Risk of Rain 2 mod.
 
 There's now language file support, easy thunderstore build packaging, proper logging, an open-source license, and a tutorial.
 
@@ -22,9 +22,3 @@ There's now language file support, easy thunderstore build packaging, proper log
 10. Build the project
     - In Visual Studio, you just right click the solution or csproj and click `rebuild`
     - In VSCode, open a terminal at the root of your mod project and run `dotnet build --configuration Debug` or `dotnet build --configuration Release` if you're ready to publish to Thunderstore (you do need the dotnet sdk installed)
-
-## Changelog
-
-**1.0.0**
-
-- Release

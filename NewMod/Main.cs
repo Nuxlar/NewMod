@@ -1,6 +1,9 @@
 using BepInEx;
+using RoR2.ContentManagement;
 using System.Diagnostics;
 using System.IO;
+using UnityEngine;
+using UnityEngine.AddressableAssets;
 
 namespace NewMod
 {
@@ -18,10 +21,11 @@ namespace NewMod
     public void Awake()
     {
       Instance = this;
-      
+
       Stopwatch stopwatch = Stopwatch.StartNew();
 
       Log.Init(Logger);
+      // LoadVanillaAssets();
 
       PluginDirectory = Path.GetDirectoryName(Info.Location);
       LanguageFolderHandler.Register(PluginDirectory);
@@ -30,5 +34,25 @@ namespace NewMod
       Log.Info_NoCallerPrefix($"Initialized in {stopwatch.Elapsed.TotalSeconds:F2} seconds");
     }
 
+    private static void LoadVanillaAssets()
+    {
+      // Example for how to properly load in assets to be used later
+      // AssetAsyncReferenceManager<Material>.LoadAsset(new AssetReferenceT<Material>(RoR2BepInExPack.GameAssetPaths.RoR2_Base_moon.matMoonTerrain_mat)).Completed += (x) => variableName = x.Result;
+    }
+
+    /*
+        private static void TweakVanillaAssets()
+        {
+          Example for how to edit an asset once it finishes loading
+          AssetAsyncReferenceManager<GameObject>.LoadAsset(new AssetReferenceT<Material>(RoR2BepInExPack.GameAssetPaths.RoR2_DLC2_Items_LowerPricedChests.PickupSaleStar_prefab)).Completed += delegate (AsyncOperationHandle<GameObject> obj)
+          {
+            MeshCollider collider = obj.Result.transform.find("SaleStar")?.GetComponent<MeshCollider>();
+            if (collider)
+            {
+              collider.convex = true;
+            }
+          };
+        }
+    */
   }
 }
