@@ -25,7 +25,7 @@ namespace NewMod
       Stopwatch stopwatch = Stopwatch.StartNew();
 
       Log.Init(Logger);
-      // LoadVanillaAssets();
+      // LoadAssets();
 
       PluginDirectory = Path.GetDirectoryName(Info.Location);
       LanguageFolderHandler.Register(PluginDirectory);
@@ -34,14 +34,14 @@ namespace NewMod
       Log.Info_NoCallerPrefix($"Initialized in {stopwatch.Elapsed.TotalSeconds:F2} seconds");
     }
 
-    private static void LoadVanillaAssets()
+    private static void LoadAssets()
     {
       // Example for how to properly load in assets to be used later
       // AssetAsyncReferenceManager<Material>.LoadAsset(new AssetReferenceT<Material>(RoR2BepInExPack.GameAssetPaths.RoR2_Base_moon.matMoonTerrain_mat)).Completed += (x) => variableName = x.Result;
     }
 
     /*
-        private static void TweakVanillaAssets()
+        private static void TweakAssets()
         {
           Example for how to edit an asset once it finishes loading
           AssetAsyncReferenceManager<GameObject>.LoadAsset(new AssetReferenceT<Material>(RoR2BepInExPack.GameAssetPaths.RoR2_DLC2_Items_LowerPricedChests.PickupSaleStar_prefab)).Completed += delegate (AsyncOperationHandle<GameObject> obj)
