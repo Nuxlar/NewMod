@@ -22,16 +22,10 @@ namespace NewMod
     {
       Instance = this;
 
-      Stopwatch stopwatch = Stopwatch.StartNew();
-
       Log.Init(Logger);
       // LoadAssets();
 
-      PluginDirectory = Path.GetDirectoryName(Info.Location);
-      LanguageFolderHandler.Register(PluginDirectory);
-
-      stopwatch.Stop();
-      Log.Info_NoCallerPrefix($"Initialized in {stopwatch.Elapsed.TotalSeconds:F2} seconds");
+      // PluginDirectory = Path.GetDirectoryName(Info.Location);
     }
 
     private static void LoadAssets()
