@@ -10,6 +10,14 @@ Easy thunderstore build packaging, proper logging, and a tutorial.
 
 ### Quickstart
 
+#### Quick Setup Script (needs python installed)
+1. On the GitHub repo, select the `Use this template` button then click `Create a new repository`. Or clone/download the repo.
+2. Run `python setup_mod.py MyCoolMod --author MyTeam --version 1.0.0 --description "My cool mod"` (only the mod name is a required argument)
+3. Build the project
+    - In Visual Studio, you just right click the solution or csproj and click `rebuild`
+    - In VSCode, open a terminal at the root of your mod project and run `dotnet build` or `dotnet build --configuration Release` if you're ready to publish to Thunderstore (you do need the dotnet sdk installed)
+
+#### Manual Setup
 1. On the GitHub repo, select the `Use this template` button then click `Create a new repository`. Or clone/download the repo.
 2. Change the `NewMod.sln` and `NewMod.csproj` filenames to your mod's name
 3. Inside of `NewMod.sln`, change any instance of "NewMod" to your mod's name `NewMod", "NewMod\NewMod.csproj`
