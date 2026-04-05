@@ -18,35 +18,15 @@ namespace NewMod
     internal static Main Instance { get; private set; }
     public static string PluginDirectory { get; private set; }
 
+    public static GameObject exampleVanillaAsset = Addressables.LoadAssetAsync<GameObject>(RoR2BepInExPack.GameAssetPaths.Version_1_39_0.RoR2_Base_Commando.CommandoBody_prefab).WaitForCompletion();
+
     public void Awake()
     {
       Instance = this;
 
       Log.Init(Logger);
-      // LoadAssets();
 
       // PluginDirectory = Path.GetDirectoryName(Info.Location);
     }
-
-    private static void LoadAssets()
-    {
-      // Example for how to properly load in assets to be used later
-      // AssetAsyncReferenceManager<Material>.LoadAsset(new AssetReferenceT<Material>(RoR2BepInExPack.GameAssetPaths.RoR2_Base_moon.matMoonTerrain_mat)).Completed += (x) => variableName = x.Result;
-    }
-
-    /*
-        private static void TweakAssets()
-        {
-          Example for how to edit an asset once it finishes loading
-          AssetAsyncReferenceManager<GameObject>.LoadAsset(new AssetReferenceT<Material>(RoR2BepInExPack.GameAssetPaths.RoR2_DLC2_Items_LowerPricedChests.PickupSaleStar_prefab)).Completed += delegate (AsyncOperationHandle<GameObject> obj)
-          {
-            MeshCollider collider = obj.Result.transform.find("SaleStar")?.GetComponent<MeshCollider>();
-            if (collider)
-            {
-              collider.convex = true;
-            }
-          };
-        }
-    */
   }
 }
